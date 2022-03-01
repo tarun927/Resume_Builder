@@ -1,0 +1,187 @@
+html,body,#root{
+    height: 100%;
+    padding: 0;
+    margin:0;
+   box-sizing: border-box;
+   background: #fff url(https://cdn2.resumenerd.com/images/dotted-bg.png) top left;
+}
+/* *:focus {
+    outline: none;
+    border: 1px solid lightblue;
+} */
+
+.container{
+    /* background: red; */
+    height: 100%;
+    display: grid;
+    grid-template-rows: 50px auto 50px;
+    box-sizing: border-box;
+}
+.header{
+    /* background: blue; */
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 15px 10px -15px #111;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color:rgb(230, 225, 225);
+
+}
+.content{
+    /* background: yellow; */
+    box-sizing: border-box;
+   /* background: #fff url(https://cdn2.resumenerd.com/images/dotted-bg.png) top left; */
+   
+    
+}
+.footer{
+    background: rgb(31, 30, 30);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.full{
+    /* width: 25vw; */
+    width: 100%;
+    /* background-color: greenyellow; */
+    display: grid;
+   place-content:center;
+}
+
+.form-section{
+    /* background-color: blueviolet; */
+    color: white;
+    background-color: #1a3f6a;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 200px;
+    width: 50vw;
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }  
+ /* .first{
+     background-color: lightblue ;
+ } */
+.form-card{
+    width: 100%;
+    height: 100%;
+    /* background-color: blue; */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-sign{
+    width:40vw;
+    background-color: lightblue;
+    height:5vh;
+    margin: 15px 0;
+    border-radius: 10px;
+    border:none;
+    border: whitesmoke;
+}
+.input-sign:focus{
+    outline: none;
+    border: 2px solid rgb(236, 87, 211);
+}
+.btn{
+    width: 25vw;
+    height: 5vh;
+    border-radius: 10px;
+    border: none;
+}
+
+
+
+
+
+   .BgTempColor{
+       
+       color: white;
+    width: 5vw;
+    height: 5vw;
+    margin: 2vh;
+    position: relative;
+   }
+
+
+ .BgTempColor1{
+    background-color: #333333;
+}
+   .BgTempColor2{
+    background-color: #ac7bae;
+}
+.BgTempColor3{
+    background-color: #305fec;
+}
+.BgTempColor4{
+    background-color: #6ca7ba;
+}
+.BgTempColor5{
+    background-color: #e5a3a1;
+}
+.BgTempColor6{
+    background-color: #9b9b9b;
+}
+.BgTempColor7{
+    background-color: #ef943a;
+}
+.BgTempColor8{
+    background-color: #acb75a;
+}
+.BgTempColor9{
+    background-color: #2f527b;
+}
+
+
+.TempColor1{
+    color: #333333;
+}
+.TempColor2{
+    color: #ac7bae;
+}
+.TempColor3{
+    color: #305fec;
+}
+.TempColor4{
+    color: #6ca7ba;
+}
+.TempColor5{
+    color: #e5a3a1;
+}
+.TempColor6{
+    color: #9b9b9b;
+}
+.TempColor7{
+    color:  #ef943a;
+}
+.TempColor8{
+    color:#acb75a;
+}
+.TempColor9{
+    color:#2f527b;
+}
+
+.layoutM1{
+    padding:0 7vw;
+}
+.layoutM2{
+    padding:0 5vw;
+}
+.layoutM3{
+    padding:0 3vw;
+}
+
+.fontSize1{
+    font-size:12px;
+}
+.fontSize2{
+    font-size:14px;
+}
+.fontSize3{
+    font-size:16px;
+}
+

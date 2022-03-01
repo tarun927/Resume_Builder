@@ -1,0 +1,20 @@
+.skillin{
+    width: 29vw;
+    height: 5vh;
+    border:none;
+    border:1px solid lightgray;
+    border-right: none;
+    margin: 1vh 0;
+}
+span{
+    background-color: rgb(253, 129, 129);
+    /* border:1px solid lightgray; */
+    color: white;
+    border-left: none;
+    padding: 10px;
+    padding-bottom: 15px;
+    border-radius: 0 10px 10px 0 ;
+}
+span:hover{
+    background-color: red;
+}

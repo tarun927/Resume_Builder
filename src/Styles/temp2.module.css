@@ -1,0 +1,64 @@
+.container{
+    /* background-color: lightgreen; */
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 33% 67%;
+    position: relative;
+}
+/* .left{
+    background-color: rgb(228, 48, 75);
+} */
+.layout{
+    /* background-color: lightsalmon; */
+    box-sizing: border-box;
+    position: absolute;
+    top:0;
+    left: -20px;
+    color: #333;
+    width: 105%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 33% 67%;
+    /* padding:0 2vw; */
+}
+
+.name2{
+    /* background-color: lightgreen; */
+    box-sizing: border-box;
+    width: 100%;
+    font-size:x-large;
+    padding-left: 10%;
+    margin-top: 30%;
+    color: whitesmoke;
+}
+.belowName{
+    box-sizing: border-box;
+    padding-top: 5%;
+    width: 100%;
+    padding-left: 10%;
+    color: whitesmoke;
+}
+.right1{
+    /* background-color: khaki; */
+    padding: 10% 0;
+
+}
+.title{
+    /* background-color: lightpink; */
+   color: white;
+   width: 97%;
+   font-weight: bold;
+   padding-left: 10px;
+   
+}
+.skills{
+    margin: 5% 0;
+}
+.parentSkillDiv{
+    display: flex;
+    padding-top: 5px;
+}
+.leftSkills{
+    margin: 0 200px 0 20px;
+}
