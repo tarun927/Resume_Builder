@@ -4,33 +4,17 @@ import styles from '../Styles/signup.module.css'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { useDispatch, useSelector } from 'react-redux';
+import { homeChange, userChange } from '../redux/action/action';
+import { db } from '../firebase-config';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyCm6TFJkkdHUuVREJARygj8EesZLjZznTQ",
-    authDomain: "test-9ce80.firebaseapp.com",
-    projectId: "test-9ce80",
-    storageBucket: "test-9ce80.appspot.com",
-    messagingSenderId: "33528766391",
-    appId: "1:33528766391:web:0d047893cd945d3289d232",
-    measurementId: "G-42MP3L07W4"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
 export default function Signup() {
     const emailUp = React.createRef(null);
     const passUp = React.createRef(null);
     const nameUp = React.createRef(null);
-    const db = getFirestore();
+    let userState = useSelector(state=>state.userReducer)
+    let dispatch = useDispatch()
 
     const handleSignUp = () => {
         console.log("btn clickd");
@@ -44,17 +28,17 @@ export default function Signup() {
                 console.log(user)
 
                 //adding in collection
-                try {
+              
                     console.log("success addFun");
                     const docRef = await addDoc(collection(db, "User_Info"), {
                         name: nameUp.current.value,
                         email: emailUp.current.value,
                     });
-    
+
                     console.log("Document written with ID: ", docRef.id);
-                } catch (error) {
-                    console.log(error);
-                }
+                    dispatch(userChange({...userState,doc_id:docRef.id,email:emailUp.current.value}))
+                    
+               
 
             })
             .catch((error) => {
@@ -64,7 +48,7 @@ export default function Signup() {
                 // ..
             });
 
-           
+
     }
     return (
         <div className="form-card">

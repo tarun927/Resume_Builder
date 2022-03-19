@@ -1,4 +1,4 @@
-const initialState=2
+const initialState=1
 const templateReducer=(state=initialState,action)=>{
      if(action.type=="CHANGETEMP"){
         return action.payload

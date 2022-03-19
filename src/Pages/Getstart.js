@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../Styles/getstar.module.css'
 
 
 export default function Getstart() {
+  
   return (
     <div className={styles.gscontainer}>
       <div className={styles.gswrittencontainer}>

@@ -54,3 +54,9 @@ export const tempChange=(x)=>{
     }
 }
 
+export const userChange=(obj)=>{
+    return{
+        type:"CHANGEUSER",
+        payload:obj
+    }
+}

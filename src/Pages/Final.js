@@ -5,13 +5,15 @@ import { useSelector } from 'react-redux'
 import SideBar from '../Components/SideBar'
 import Template1 from '../Components/Template1'
 import Template2 from '../Components/Template2'
-import { finalChange } from '../redux/action/action'
+import { eduChange, finalChange, homeChange, skillChange, summaryChange, userChange, workChange } from '../redux/action/action'
 import styles from '../Styles/final.module.css'
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import GenericPdfDownloader from '../Components/subComponents/GenericPdfDownloader';
 import * as htmlToImage from 'html-to-image';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { collection, doc, onSnapshot, query, updateDoc, where } from '@firebase/firestore';
+import { db } from '../firebase-config';
 
 
 export default function Final() {
@@ -74,6 +76,7 @@ export default function Final() {
     let colorArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     let [sideOpen, setSideOpen] = useState(false)
 
+    let userState = useSelector(state=>state.userReducer)
     let finalState = useSelector(state => state.finalReducer)
     let templateState = useSelector(state => state.templateReducer)
     let [finalForm, setFinalForm] = useState(finalState)
@@ -95,10 +98,63 @@ export default function Final() {
         console.log(value, name);
         setFinalForm({ ...finalForm, [name]: value })
     }
+
+    useEffect(()=>{
+        if (JSON.parse(localStorage.getItem('userReducer')) != null) {
+            dispatch(userChange(JSON.parse(localStorage.getItem('userReducer'))))
+        }
+        console.log(finalState)
+    },[])
     useEffect(() => {
+        //get data on change of userReducer
+        const q = query(collection(db, "User_Info"), where("email", "==", userState.email));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+
+            querySnapshot.forEach((doc) => {
+                if ("finalReducer" in doc.data()) {
+                    dispatch(finalChange({ ...doc.data().finalReducer }))
+                    setFinalForm({ ...doc.data().finalReducer })
+                }
+                if ("homeReducer" in doc.data()) {
+                    dispatch(homeChange({ ...doc.data().homeReducer }))
+                }
+                if ("workReducer" in doc.data()){
+                    dispatch(workChange({ ...doc.data().workReducer }))
+                } 
+                if ("eduReducer" in doc.data()){
+                    dispatch(eduChange({ ...doc.data().eduReducer }))
+                } 
+                if ("skillReducer" in doc.data()){
+                    dispatch(skillChange([ ...doc.data().skillReducer ]))
+                } 
+                if ("summReducer" in doc.data()){
+                    dispatch(summaryChange(doc.data().summReducer))
+                } 
+            });
+
+        });
+    }, [userState])
+
+
+    useEffect(async () => {
         console.log(finalForm);
         dispatch(finalChange(finalForm))
+        
+       // update in firebase
+        try {
+            var person = doc(db,"User_Info",userState.doc_id)
+            await updateDoc(person,{
+                finalReducer:finalForm
+            })
+            console.log("updated final")
+        } catch (error) {
+            console.log(error);
+        }
+
     }, [finalForm])
+
+   
+
 
 
     return (

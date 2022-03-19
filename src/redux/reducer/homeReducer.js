@@ -1,11 +1,10 @@
 const initialState ={
-    name:"",
+    name:"Stellar James",
     email:"",
     address:"",
     city:"",
     country:"",
-    phone:"",
-    isLogin:0
+    phone:""
 }
  const homeReducer =(state=initialState,action)=>{
     if(action.type=="setHome"){

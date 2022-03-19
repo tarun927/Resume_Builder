@@ -5,7 +5,7 @@ export default function Template1() {
 
 
     let finalState = useSelector(state => state.finalReducer)
-    let { homeReducer, namereducer, summaryReducer, skillReducer } = useSelector(state => state)
+    let { homeReducer, namereducer, summaryReducer, skillReducer,eduReducer,workReducer } = useSelector(state => state)
     let tempColor = 'TempColor' + finalState.color
     let bgTempColor = 'BgTempColor' + finalState.color
     let layoutMargin = 'layoutM' + finalState.layout
@@ -59,9 +59,19 @@ export default function Template1() {
                 </div>
                 <div className={`workGlobal ${styles.workInfo}`}>
                     <b className={` ${tempColor}`}>WORK EXPERIENCE</b>
+                    <div>
+                         <div>{workReducer.job+'at'}:{workReducer.company},{workReducer.country},{workReducer.city}</div>
+                         <div>{workReducer.startMonth},{workReducer.startYear} to {workReducer.endMonth},{workReducer.endYear}</div>
+                        <div>{workReducer.jobDesc}</div>
+                    </div>
                 </div>
                 <div className={`eduGlobal ${styles.eduInfo}`}>
                     <b className={tempColor}>EDUCATION</b>
+                    <div>
+                         <div>{eduReducer.school+'at'}:{eduReducer.city},{eduReducer.country}</div>
+                         <div>{eduReducer.degree} {eduReducer.eduMonth},{eduReducer.eduYear}</div>
+                        
+                    </div>
                 </div>
             </div>
 
@@ -69,8 +79,9 @@ export default function Template1() {
     )
 }
 
-
-{/* <svg height="65" width="65">
-                                <line x1="80" y1="0" x2="0" y2="80" style={{ stroke: "white", strokeWidth: 2 }} />
-                            </svg> */}
-
+// school:"",
+// city:"",
+// country:"",
+// degree:"",
+// eduMonth:"",
+// eduYear:""

@@ -2,36 +2,16 @@ import React from 'react'
 import styles from '../Styles/login.module.css'
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, query, where, onSnapshot,getFirestore } from "firebase/firestore";
+import { collection, query, where, onSnapshot, getFirestore } from "firebase/firestore";
 
-//google
-import { GoogleAuthProvider } from "firebase/auth";
-import { signInWithPopup } from "firebase/auth";
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { homeChange } from '../redux/action/action';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-    apiKey: "AIzaSyCm6TFJkkdHUuVREJARygj8EesZLjZznTQ",
-    authDomain: "test-9ce80.firebaseapp.com",
-    projectId: "test-9ce80",
-    storageBucket: "test-9ce80.appspot.com",
-    messagingSenderId: "33528766391",
-    appId: "1:33528766391:web:0d047893cd945d3289d232",
-    measurementId: "G-42MP3L07W4"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+import { eduChange, finalChange, homeChange, skillChange, summaryChange, userChange, workChange } from '../redux/action/action';
+//google
+import { GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+import { db } from '../firebase-config';
 
 const provider = new GoogleAuthProvider();
 
@@ -41,8 +21,7 @@ export default function Login() {
     const navigate = useNavigate()
     const emailIn = React.createRef(null);
     const passIn = React.createRef(null);
-    const db = getFirestore();
-    let homestate = useSelector(state=>state.homeReducer)
+    let homestate = useSelector(state => state.homeReducer)
     let dispatch = useDispatch()
 
     const handleSignIn = () => {
@@ -54,20 +33,34 @@ export default function Login() {
                 const user = userCredential.user;
                 // ...
                 console.log(user)
+                console.log("logged in");
 
                 //get data
                 const q = query(collection(db, "User_Info"), where("email", "==", emailIn.current.value));
                 const unsubscribe = onSnapshot(q, (querySnapshot) => {
-                   
+
                     querySnapshot.forEach((doc) => {
                         // nameArr.push(doc.data().name);
-                        console.log({...homestate,name:doc.data().name,email:doc.data().email});
-                        dispatch(homeChange({...homestate,name:doc.data().name,email:doc.data().email, isLogin:1}))
+                        // dispatch(userChange({
+                        //     isLogin: 1,
+                        //     doc_id: doc.id,
+                        //     email: doc.data().email,
+                        //     name: doc.data().name
+                        // }))
+                        let obj = {
+                            isLogin: 1,
+                            doc_id: doc.id,
+                            email: doc.data().email,
+                            name: doc.data().name
+                        }
+                        localStorage.setItem('userReducer', JSON.stringify(obj))
+                        let retr = localStorage.getItem('userReducer')
+
                     });
                     // console.log(nameArr);
                 });
 
-              navigate("/")  
+                navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
